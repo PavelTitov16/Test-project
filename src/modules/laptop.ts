@@ -19,12 +19,12 @@ export class Laptop implements LaptopModel {
     public swipeLeft(): void {
         const laptopScreen = document.getElementById('screen') as HTMLDivElement;
 
-        laptopScreen.style.transform = "translateX(0%)";
+        laptopScreen.style.transform = 'translateX(0%)';
     }
 
     public swipeRight(): void {
         const laptopScreen = document.getElementById('screen') as HTMLDivElement;
 
-        laptopScreen.style.transform = "translateX(-100%)";
+        laptopScreen.style.transform = 'translateX(-100%)';
     }
 }
