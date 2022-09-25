@@ -7,10 +7,12 @@ export class Description implements DescriptionModel {
     public body = document.querySelector('body') as HTMLBodyElement;
     public laptop: Laptop;
     public circle: Circle;
+    public mouseState: boolean;
 
     constructor() {
         this.laptop = new Laptop();
         this.circle = new Circle();
+        this.mouseState = true;
     }
 
     public init(): string {
@@ -113,7 +115,7 @@ export class Description implements DescriptionModel {
             });
         });
     }
-
+    
     public addGreenBg(): void {
         this.body.classList.remove("color-purple");
         this.body.classList.add("color-green");
@@ -130,24 +132,39 @@ export class Description implements DescriptionModel {
         }
     }
 
+    public disableMouse() {
+        this.mouseState = false;
+        
+        setTimeout(() => {
+            this.mouseState = true;
+        }, 2500);
+    }
+
+    public getMouseState() {
+        return this.mouseState;
+    }
+
     public subscribeOnLeft(): void {
         const leftBtn = document.getElementById('btn-left') as HTMLButtonElement;
         const rightBtn = document.getElementById('btn-right') as HTMLButtonElement;
 
         leftBtn.addEventListener('click', (event: MouseEvent): void => {
-            leftBtn.classList.add('inactive');
-            leftBtn.disabled = true;
-            rightBtn.classList.remove('inactive');
-            rightBtn.disabled = false;
-            this.moveTextUp();
-            setTimeout(this.addProductionText, 1200);
-            this.moveTextDown();
-            this.addGreenBg();
-            this.laptop.swipeLeft();
-            this.circle.changeCircles();
-            setTimeout((): void => {
-                this.getNewCircles();
-            }, 2500);
+            if (this.getMouseState()) {
+                leftBtn.classList.add('inactive');
+                leftBtn.disabled = true;
+                rightBtn.classList.remove('inactive');
+                rightBtn.disabled = false;
+                this.moveTextUp();
+                setTimeout(this.addProductionText, 1200);
+                this.moveTextDown();
+                this.addGreenBg();
+                this.laptop.swipeLeft();
+                this.circle.changeCircles();
+                setTimeout((): void => {
+                    this.getNewCircles();
+                }, 2500);
+                this.disableMouse();
+            }
         });
     }
 
@@ -156,19 +173,22 @@ export class Description implements DescriptionModel {
         const rightBtn = document.getElementById('btn-right') as HTMLButtonElement;
 
         rightBtn.addEventListener('click', (event: MouseEvent): void => {
-            rightBtn.classList.add('inactive');
-            rightBtn.disabled = true;
-            leftBtn.classList.remove('inactive');
-            leftBtn.disabled = false;
-            this.moveTextUp();
-            setTimeout(this.addShopText, 1200);
-            this.moveTextDown();
-            this.addGPurpleBg();
-            this.laptop.swipeRight();
-            this.circle.changeCircles();
-            setTimeout((): void => {
-                this.getNewCircles();
-            }, 2500);
+            if (this.getMouseState()) { 
+                rightBtn.classList.add('inactive');
+                rightBtn.disabled = true;
+                leftBtn.classList.remove('inactive');
+                leftBtn.disabled = false;
+                this.moveTextUp();
+                setTimeout(this.addShopText, 1200);
+                this.moveTextDown();
+                this.addGPurpleBg();
+                this.laptop.swipeRight();
+                this.circle.changeCircles();
+                setTimeout((): void => {
+                    this.getNewCircles();
+                }, 2500);
+                this.disableMouse();
+            }
         });
     }
 

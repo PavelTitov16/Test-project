@@ -50,8 +50,6 @@ export class App implements ApppModel {
         });
     }
 
-    
-
     public async render(): Promise<void> {
         await this.init();
         this.body.insertAdjacentHTML('beforeend', this.template);
