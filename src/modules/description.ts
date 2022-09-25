@@ -47,7 +47,7 @@ export class Description implements DescriptionModel {
         return this.template;
     }
 
-    public addProductionText() {
+    public addProductionText(): void {
         const layoutTitle = document.getElementById('layout-title') as HTMLHeadElement;
         const layoutText = document.getElementById('layout-text') as HTMLParagraphElement;
         const layoutType = document.getElementById('layout-type') as HTMLParagraphElement;
@@ -59,7 +59,7 @@ export class Description implements DescriptionModel {
         layoutIndustry.textContent = 'Производство, Торговля';
     }
     
-    public addShopText() {
+    public addShopText(): void {
         const layoutTitle = document.getElementById('layout-title') as HTMLHeadElement;
         const layoutText = document.getElementById('layout-text') as HTMLParagraphElement;
         const layoutType = document.getElementById('layout-type') as HTMLParagraphElement;
@@ -71,7 +71,7 @@ export class Description implements DescriptionModel {
         layoutIndustry.textContent = 'Торговля';
     }
     
-    public moveTextUp() {
+    public moveTextUp(): void {
         const layoutTitle = document.getElementById('layout-title') as HTMLHeadElement;
         const layoutText = document.getElementById('layout-text') as HTMLParagraphElement;
         const layoutTabsTitles = Array.from(document.getElementsByClassName('layout-tab__title')) as HTMLHeadElement[];
@@ -87,7 +87,7 @@ export class Description implements DescriptionModel {
         });
     }
 
-    public moveTextDown() {
+    public moveTextDown(): void {
         const layoutTitle = document.getElementById('layout-title') as HTMLHeadElement;
         const layoutText = document.getElementById('layout-text') as HTMLParagraphElement;
         const layoutTabsTitles = Array.from(document.getElementsByClassName('layout-tab__title')) as HTMLHeadElement[];
@@ -105,7 +105,7 @@ export class Description implements DescriptionModel {
         });
     }
 
-    public subscribeOnLeft() {
+    public subscribeOnLeft(): void {
         const leftBtn = document.getElementById('btn-left') as HTMLButtonElement;
         const rightBtn = document.getElementById('btn-right') as HTMLButtonElement;
 
@@ -120,7 +120,7 @@ export class Description implements DescriptionModel {
         });
     }
 
-    public subscribeOnRight() {
+    public subscribeOnRight(): void {
         const leftBtn = document.getElementById('btn-left') as HTMLButtonElement;
         const rightBtn = document.getElementById('btn-right') as HTMLButtonElement;
 
@@ -137,23 +137,3 @@ export class Description implements DescriptionModel {
 
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
