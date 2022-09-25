@@ -89,6 +89,11 @@ h6 {
     font-weight: 400;
 }
 
+button {
+    cursor: url('./assets/cursor-scale.svg'),auto;
+    transition: 0.1s ease-in-out;
+}
+
 /* Обнуление */
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap');
@@ -143,6 +148,7 @@ h6 {
 
 body {
     transition: background-color 2.5s ease;
+    cursor: url('./assets/cursor.svg'),auto;
 }
 
 * {
