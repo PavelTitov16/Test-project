@@ -1,13 +1,16 @@
-import { Laptop } from '../modules/laptop';
 import { ApppModel } from '../models/app.model';
+import { Laptop } from '../modules/laptop';
+import { Description } from '../modules/description';
 
 export class App implements ApppModel {
     public template: string;
-    public laptop;
     public body = document.querySelector('body') as HTMLBodyElement;
+    public laptop: Laptop;
+    public description: Description;
 
   constructor() {
     this.laptop = new Laptop();
+    this.description = new Description();
   }
   
     public init(): string {
@@ -16,6 +19,7 @@ export class App implements ApppModel {
             <div class="layout-container">
                 <h1 class="layout-title">Кейсы</h1>
                 ${this.laptop.init()}
+                ${this.description.init()}
             </div>
         </div>`;
       return this.template;
