@@ -313,3 +313,22 @@ body {
         animation: hostUp  2.5s linear;
     }
 }
+
+.layout-circle {
+    position: absolute;
+    border-radius: 50%;
+    z-index: 3;
+    transition: 0.2s;
+    background-blend-mode: normal, normal, normal, multiply;
+    backdrop-filter: blur(30px);
+}
+
+.green-circle {
+    background-image: linear-gradient(0deg, rgba(68, 104, 90, 0.44), rgba(68, 104, 90, 0.44)), radial-gradient(32.42% 32.42% at 46.83% 18.92%, rgba(255, 255, 255, 0.147) 0%, rgba(100, 117, 110, 0) 100%);
+    box-shadow: 8px 24px 60px rgba(21, 53, 30, 0.1), inset 2.29395px 2.29395px 2.29395px rgba(73, 100, 87, 0.05);
+}
+
+.purple-circle {
+    background-image: linear-gradient(0deg, rgba(141, 104, 177, 0.4), rgba(141, 104, 177, 0.4)), radial-gradient(32.42% 32.42% at 46.83% 18.92%, rgba(255, 255, 255, 0.147) 0%, rgba(62, 75, 119, 0) 100%);
+    box-shadow: 29px 54px 56px rgba(36, 52, 102, 0.25), inset 2.29395px 2.29395px 2.29395px rgba(84, 101, 157, 0.1);
+}
