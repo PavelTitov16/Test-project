@@ -29,8 +29,20 @@ export class Circle implements CircleModel {
     }
 
     public addCircles(): void {
-        for (let i =1; i <= 3; i++) {
+        for (let i = 1; i <= 3; i++) {
             this.init();
         }
+    }
+
+    public changeCircles(): void {
+        const circles = Array.from(document.getElementsByClassName('layout-circle')) as HTMLDivElement[]; 
+        
+        circles.forEach((circle) => {
+            circle.style.transition = `2s`;
+            circle.style.transform = `translateX(${(-100)}vw)`;
+            setTimeout(function () {
+                circle.remove();
+            }, 2000);
+        });
     }
 }

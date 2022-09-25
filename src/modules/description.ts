@@ -1,13 +1,16 @@
 import { DescriptionModel } from '../models/description.model';
 import { Laptop } from '../modules/laptop';
+import { Circle } from './circle';
 
 export class Description implements DescriptionModel {
     public template: string;
     public body = document.querySelector('body') as HTMLBodyElement;
     public laptop: Laptop;
+    public circle: Circle;
 
     constructor() {
         this.laptop = new Laptop();
+        this.circle = new Circle();
     }
 
     public init(): string {
@@ -121,6 +124,12 @@ export class Description implements DescriptionModel {
         this.body.classList.add("color-purple");
     }
 
+    public getNewCircles(): void {
+        for (let i =1; i <= 3; i++) {
+            this.circle.init();
+        }
+    }
+
     public subscribeOnLeft(): void {
         const leftBtn = document.getElementById('btn-left') as HTMLButtonElement;
         const rightBtn = document.getElementById('btn-right') as HTMLButtonElement;
@@ -135,6 +144,10 @@ export class Description implements DescriptionModel {
             this.moveTextDown();
             this.addGreenBg();
             this.laptop.swipeLeft();
+            this.circle.changeCircles();
+            setTimeout((): void => {
+                this.getNewCircles();
+            }, 2500);
         });
     }
 
@@ -152,6 +165,10 @@ export class Description implements DescriptionModel {
             this.moveTextDown();
             this.addGPurpleBg();
             this.laptop.swipeRight();
+            this.circle.changeCircles();
+            setTimeout((): void => {
+                this.getNewCircles();
+            }, 2500);
         });
     }
 

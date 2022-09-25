@@ -8,4 +8,5 @@ export interface DescriptionModel {
     subscribeOnRight(): void;
     addGPurpleBg(): void;
     addGreenBg(): void;
+    getNewCircles(): void;
 }
