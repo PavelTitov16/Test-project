@@ -93,7 +93,7 @@ export class Description implements DescriptionModel {
         const layoutTabsTitles = Array.from(document.getElementsByClassName('layout-tab__title')) as HTMLHeadElement[];
         const layoutTabsText = Array.from(document.getElementsByClassName('layout-tab__text')) as HTMLParagraphElement[]; 
 
-        layoutTitle.addEventListener("animationend", () => {
+        layoutTitle.addEventListener("animationend", (event: AnimationEvent): void => {
             layoutTitle.classList.remove("up");
             layoutText.classList.remove("up");
             layoutTabsTitles.forEach((title) => {
@@ -105,11 +105,21 @@ export class Description implements DescriptionModel {
         });
     }
 
+    public addGreenBg(): void {
+        this.body.classList.remove("color-purple");
+        this.body.classList.add("color-green");
+    }
+    
+    public addGPurpleBg(): void {
+        this.body.classList.remove("color-green");
+        this.body.classList.add("color-purple");
+    }
+
     public subscribeOnLeft(): void {
         const leftBtn = document.getElementById('btn-left') as HTMLButtonElement;
         const rightBtn = document.getElementById('btn-right') as HTMLButtonElement;
 
-        leftBtn.addEventListener('click', () => {
+        leftBtn.addEventListener('click', (event: MouseEvent): void => {
             leftBtn.classList.add('inactive');
             leftBtn.disabled = true;
             rightBtn.classList.remove('inactive');
@@ -117,6 +127,7 @@ export class Description implements DescriptionModel {
             this.moveTextUp();
             setTimeout(this.addProductionText, 1200);
             this.moveTextDown();
+            this.addGreenBg();
         });
     }
 
@@ -124,7 +135,7 @@ export class Description implements DescriptionModel {
         const leftBtn = document.getElementById('btn-left') as HTMLButtonElement;
         const rightBtn = document.getElementById('btn-right') as HTMLButtonElement;
 
-        rightBtn.addEventListener('click', () => {
+        rightBtn.addEventListener('click', (event: MouseEvent): void => {
             rightBtn.classList.add('inactive');
             rightBtn.disabled = true;
             leftBtn.classList.remove('inactive');
@@ -132,6 +143,7 @@ export class Description implements DescriptionModel {
             this.moveTextUp();
             setTimeout(this.addShopText, 1200);
             this.moveTextDown();
+            this.addGPurpleBg();
         });
     }
 
