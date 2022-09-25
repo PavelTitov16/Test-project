@@ -12,8 +12,8 @@ export class Circle implements CircleModel {
         const layout = document.getElementById('layout') as HTMLDivElement;
         const circle = document.createElement('div');
         const { width, height } = layout.getBoundingClientRect();
-        const h = getRandom(0, height - this.size);
-        const w = getRandom(0, width - this.size);
+        const h: number = getRandom(0, height - this.size);
+        const w: number = getRandom(0, width - this.size);
         const leftBtn = document.getElementById('btn-left') as HTMLButtonElement;
 
         circle.classList.add('layout-circle');
@@ -26,5 +26,11 @@ export class Circle implements CircleModel {
             circle.classList.add('green-circle');
         } else circle.classList.add('purple-circle');
         layout.append(circle);
+    }
+
+    public addCircles(): void {
+        for (let i =1; i <= 3; i++) {
+            this.init();
+        }
     }
 }

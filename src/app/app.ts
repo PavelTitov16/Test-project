@@ -30,9 +30,7 @@ export class App implements ApppModel {
 
     public generateCircles(): void {
         window.addEventListener('load', () => {
-            for (let i =1; i <= 3; i++) {
-                this.circle.init();
-            }
+            this.circle.addCircles();
         });
     }
 
