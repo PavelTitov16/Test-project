@@ -15,4 +15,16 @@ export class Laptop implements LaptopModel {
             </div>`;
         return this.template;
     }
+
+    public swipeLeft(): void {
+        const laptopScreen = document.getElementById('screen') as HTMLDivElement;
+
+        laptopScreen.style.transform = "translateX(0%)";
+    }
+
+    public swipeRight(): void {
+        const laptopScreen = document.getElementById('screen') as HTMLDivElement;
+
+        laptopScreen.style.transform = "translateX(-100%)";
+    }
 }

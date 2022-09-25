@@ -6,4 +6,6 @@ export interface DescriptionModel {
     moveTextDown(): void;
     subscribeOnLeft(): void;
     subscribeOnRight(): void;
+    addGPurpleBg(): void;
+    addGreenBg(): void;
 }

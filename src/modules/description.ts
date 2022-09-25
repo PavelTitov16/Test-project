@@ -1,8 +1,14 @@
 import { DescriptionModel } from '../models/description.model';
+import { Laptop } from '../modules/laptop';
 
 export class Description implements DescriptionModel {
     public template: string;
     public body = document.querySelector('body') as HTMLBodyElement;
+    public laptop: Laptop;
+
+    constructor() {
+        this.laptop = new Laptop();
+    }
 
     public init(): string {
         this.template = `
@@ -128,6 +134,7 @@ export class Description implements DescriptionModel {
             setTimeout(this.addProductionText, 1200);
             this.moveTextDown();
             this.addGreenBg();
+            this.laptop.swipeLeft();
         });
     }
 
@@ -144,6 +151,7 @@ export class Description implements DescriptionModel {
             setTimeout(this.addShopText, 1200);
             this.moveTextDown();
             this.addGPurpleBg();
+            this.laptop.swipeRight();
         });
     }
 
