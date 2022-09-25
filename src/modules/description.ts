@@ -2,6 +2,7 @@ import { DescriptionModel } from '../models/description.model';
 
 export class Description implements DescriptionModel {
     public template: string;
+    public body = document.querySelector('body') as HTMLBodyElement;
 
     public init(): string {
         this.template = `
@@ -45,6 +46,114 @@ export class Description implements DescriptionModel {
             </div>`;
         return this.template;
     }
+
+    public addProductionText() {
+        const layoutTitle = document.getElementById('layout-title') as HTMLHeadElement;
+        const layoutText = document.getElementById('layout-text') as HTMLParagraphElement;
+        const layoutType = document.getElementById('layout-type') as HTMLParagraphElement;
+        const layoutIndustry = document.getElementById('layout-industry') as HTMLParagraphElement;
+
+        layoutTitle.textContent = 'Создание корпоративного сайта для холдинга «АМКОДОР»';
+        layoutText.textContent = 'Разработать и запустить корпоративный сайт для холдинга “АМКОДОР” для развития дилерской сети на рынках Беларуси и стран СНГ. ';
+        layoutType.textContent = 'Корпоративные сайты';
+        layoutIndustry.textContent = 'Производство, Торговля';
+    }
+    
+    public addShopText() {
+        const layoutTitle = document.getElementById('layout-title') as HTMLHeadElement;
+        const layoutText = document.getElementById('layout-text') as HTMLParagraphElement;
+        const layoutType = document.getElementById('layout-type') as HTMLParagraphElement;
+        const layoutIndustry = document.getElementById('layout-industry') as HTMLParagraphElement;
+
+        layoutTitle.textContent = 'Создание маркетплейса для бизнеса по перепродаже одежды';
+        layoutText.textContent = 'Brands&Charity — благотворительная онлайн — платформа для перепродажи брендовых вещей, цель которой превратить ненужные одним людям вещи в полезный ресурс для других.';
+        layoutType.textContent = 'Интернет-магазины ';
+        layoutIndustry.textContent = 'Торговля';
+    }
+    
+    public moveTextUp() {
+        const layoutTitle = document.getElementById('layout-title') as HTMLHeadElement;
+        const layoutText = document.getElementById('layout-text') as HTMLParagraphElement;
+        const layoutTabsTitles = Array.from(document.getElementsByClassName('layout-tab__title')) as HTMLHeadElement[];
+        const layoutTabsText = Array.from(document.getElementsByClassName('layout-tab__text')) as HTMLParagraphElement[]; 
+
+        layoutTitle.classList.add("up");
+        layoutText.classList.add("up");
+        layoutTabsTitles.forEach((title) => {
+            title.classList.add("up");
+        });
+        layoutTabsText.forEach((tab) => {
+            tab.classList.add("up");
+        });
+    }
+
+    public moveTextDown() {
+        const layoutTitle = document.getElementById('layout-title') as HTMLHeadElement;
+        const layoutText = document.getElementById('layout-text') as HTMLParagraphElement;
+        const layoutTabsTitles = Array.from(document.getElementsByClassName('layout-tab__title')) as HTMLHeadElement[];
+        const layoutTabsText = Array.from(document.getElementsByClassName('layout-tab__text')) as HTMLParagraphElement[]; 
+
+        layoutTitle.addEventListener("animationend", () => {
+            layoutTitle.classList.remove("up");
+            layoutText.classList.remove("up");
+            layoutTabsTitles.forEach((title) => {
+                title.classList.remove("up");
+            });
+            layoutTabsText.forEach((tab) => {
+                tab.classList.remove("up");
+            });
+        });
+    }
+
+    public subscribeOnLeft() {
+        const leftBtn = document.getElementById('btn-left') as HTMLButtonElement;
+        const rightBtn = document.getElementById('btn-right') as HTMLButtonElement;
+
+        leftBtn.addEventListener('click', () => {
+            leftBtn.classList.add('inactive');
+            leftBtn.disabled = true;
+            rightBtn.classList.remove('inactive');
+            rightBtn.disabled = false;
+            this.moveTextUp();
+            setTimeout(this.addProductionText, 1200);
+            this.moveTextDown();
+        });
+    }
+
+    public subscribeOnRight() {
+        const leftBtn = document.getElementById('btn-left') as HTMLButtonElement;
+        const rightBtn = document.getElementById('btn-right') as HTMLButtonElement;
+
+        rightBtn.addEventListener('click', () => {
+            rightBtn.classList.add('inactive');
+            rightBtn.disabled = true;
+            leftBtn.classList.remove('inactive');
+            leftBtn.disabled = false;
+            this.moveTextUp();
+            setTimeout(this.addShopText, 1200);
+            this.moveTextDown();
+        });
+    }
+
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

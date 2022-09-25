@@ -29,5 +29,7 @@ export class App implements ApppModel {
         await this.init();
         this.body.insertAdjacentHTML('beforeend', this.template);
         this.body.classList.add('color-green');
+        this.description.subscribeOnLeft();
+        this.description.subscribeOnRight();
     }
 }

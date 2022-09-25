@@ -93,6 +93,26 @@ h6 {
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap');
 
+@keyframes hostUp {
+    from {
+      transform: translateY(0%);
+    }
+    25% {
+      transform: translateY(-50%);
+      opacity: 0;
+    }
+    50% {
+      transform: translateY(+50%);
+      opacity: 0;
+    }
+    75% {
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0%);
+    }
+}
+
 :root {
     --white: #FFFFFF;
     --green-bg:  #8DBDBA;
@@ -283,5 +303,9 @@ h6 {
                 line-height: 18px;
             }
         }
+    }
+
+    .up {
+        animation: hostUp  2.5s linear;
     }
 }
