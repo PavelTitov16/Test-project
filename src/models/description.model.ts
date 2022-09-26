@@ -9,4 +9,7 @@ export interface DescriptionModel {
     addGPurpleBg(): void;
     addGreenBg(): void;
     getNewCircles(): void;
+    disableMouse(): void;
+    getMouseState(): boolean;
+    moveCursor (): void;
 }

@@ -2,7 +2,6 @@ import { ApppModel } from '../models/app.model';
 import { Laptop } from '../modules/laptop';
 import { Description } from '../modules/description';
 import { Circle } from '../modules/circle';
-import { getRandom } from '../modules/functions';
 
 export class App implements ApppModel {
     public template: string;
@@ -35,21 +34,6 @@ export class App implements ApppModel {
         });
     }
 
-    public moveCursor (): void {
-        window.addEventListener('mousemove', (event: MouseEvent) => {
-            const mouseY = event.clientY;
-            const mouseX = event.clientX;
-            const circles = Array.from(document.getElementsByClassName('layout-circle')) as HTMLDivElement[]; 
-
-            circles.forEach((circle) => {
-                const size = +circle.style.width.slice(0, -2);
-                const addiction = getRandom(size, size * 1.5);
-        
-                circle.style.transform = `translate3d(${(mouseX - addiction)}px, ${(mouseY - addiction)}px, 0)`;
-            });
-        });
-    }
-
     public async render(): Promise<void> {
         await this.init();
         this.body.insertAdjacentHTML('beforeend', this.template);
@@ -57,6 +41,6 @@ export class App implements ApppModel {
         this.description.subscribeOnLeft();
         this.description.subscribeOnRight();
         this.generateCircles();
-        this.moveCursor();
+        this.description.moveCursor();
     }
 }

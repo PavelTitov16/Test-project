@@ -1,6 +1,7 @@
 import { DescriptionModel } from '../models/description.model';
 import { Laptop } from '../modules/laptop';
 import { Circle } from './circle';
+import { getRandom } from './functions';
 
 export class Description implements DescriptionModel {
     public template: string;
@@ -132,7 +133,7 @@ export class Description implements DescriptionModel {
         }
     }
 
-    public disableMouse() {
+    public disableMouse(): void {
         this.mouseState = false;
         
         setTimeout(() => {
@@ -140,7 +141,7 @@ export class Description implements DescriptionModel {
         }, 2500);
     }
 
-    public getMouseState() {
+    public getMouseState(): boolean {
         return this.mouseState;
     }
 
@@ -192,5 +193,20 @@ export class Description implements DescriptionModel {
         });
     }
 
+    public moveCursor (): void {
+        window.addEventListener('mousemove', (event: MouseEvent) => {
+            const mouseY = event.clientY;
+            const mouseX = event.clientX;
+            const circles = Array.from(document.getElementsByClassName('layout-circle')) as HTMLDivElement[]; 
 
+            if (this.getMouseState()) {
+                circles.forEach((circle) => {
+                    const size = +circle.style.width.slice(0, -2);
+                    const addiction = getRandom(size, size * 1.5);
+            
+                    circle.style.transform = `translate3d(${(mouseX - addiction)}px, ${(mouseY - addiction)}px, 0)`;
+                });
+            } 
+        });
+    }
 }
