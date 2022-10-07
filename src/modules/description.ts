@@ -66,11 +66,12 @@ export class Description implements DescriptionModel {
         const layoutIndustry = document.getElementById('layout-industry') as HTMLParagraphElement;
 
         layoutTitle.textContent = 'Создание корпоративного сайта для холдинга «АМКОДОР»';
-        layoutText.textContent = 'Разработать и запустить корпоративный сайт для холдинга “АМКОДОР” для развития дилерской сети на рынках Беларуси и стран СНГ. ';
+        layoutText.textContent =
+            'Разработать и запустить корпоративный сайт для холдинга “АМКОДОР” для развития дилерской сети на рынках Беларуси и стран СНГ. ';
         layoutType.textContent = 'Корпоративные сайты';
         layoutIndustry.textContent = 'Производство, Торговля';
     }
-    
+
     public addShopText(): void {
         const layoutTitle = document.getElementById('layout-title') as HTMLHeadElement;
         const layoutText = document.getElementById('layout-text') as HTMLParagraphElement;
@@ -78,24 +79,27 @@ export class Description implements DescriptionModel {
         const layoutIndustry = document.getElementById('layout-industry') as HTMLParagraphElement;
 
         layoutTitle.textContent = 'Создание маркетплейса для бизнеса по перепродаже одежды';
-        layoutText.textContent = 'Brands&Charity — благотворительная онлайн — платформа для перепродажи брендовых вещей, цель которой превратить ненужные одним людям вещи в полезный ресурс для других.';
+        layoutText.textContent =
+            'Brands&Charity — благотворительная онлайн — платформа для перепродажи брендовых вещей, цель которой превратить ненужные одним людям вещи в полезный ресурс для других.';
         layoutType.textContent = 'Интернет-магазины ';
         layoutIndustry.textContent = 'Торговля';
     }
-    
+
     public moveTextUp(): void {
         const layoutTitle = document.getElementById('layout-title') as HTMLHeadElement;
         const layoutText = document.getElementById('layout-text') as HTMLParagraphElement;
         const layoutTabsTitles = Array.from(document.getElementsByClassName('layout-tab__title')) as HTMLHeadElement[];
-        const layoutTabsText = Array.from(document.getElementsByClassName('layout-tab__text')) as HTMLParagraphElement[]; 
+        const layoutTabsText = Array.from(
+            document.getElementsByClassName('layout-tab__text')
+        ) as HTMLParagraphElement[];
 
-        layoutTitle.classList.add("up");
-        layoutText.classList.add("up");
+        layoutTitle.classList.add('up');
+        layoutText.classList.add('up');
         layoutTabsTitles.forEach((title) => {
-            title.classList.add("up");
+            title.classList.add('up');
         });
         layoutTabsText.forEach((tab) => {
-            tab.classList.add("up");
+            tab.classList.add('up');
         });
     }
 
@@ -103,39 +107,41 @@ export class Description implements DescriptionModel {
         const layoutTitle = document.getElementById('layout-title') as HTMLHeadElement;
         const layoutText = document.getElementById('layout-text') as HTMLParagraphElement;
         const layoutTabsTitles = Array.from(document.getElementsByClassName('layout-tab__title')) as HTMLHeadElement[];
-        const layoutTabsText = Array.from(document.getElementsByClassName('layout-tab__text')) as HTMLParagraphElement[]; 
+        const layoutTabsText = Array.from(
+            document.getElementsByClassName('layout-tab__text')
+        ) as HTMLParagraphElement[];
 
-        layoutTitle.addEventListener("animationend", (event: AnimationEvent): void => {
-            layoutTitle.classList.remove("up");
-            layoutText.classList.remove("up");
+        layoutTitle.addEventListener('animationend', (event: AnimationEvent): void => {
+            layoutTitle.classList.remove('up');
+            layoutText.classList.remove('up');
             layoutTabsTitles.forEach((title) => {
-                title.classList.remove("up");
+                title.classList.remove('up');
             });
             layoutTabsText.forEach((tab) => {
-                tab.classList.remove("up");
+                tab.classList.remove('up');
             });
         });
     }
-    
+
     public addGreenBg(): void {
-        this.body.classList.remove("color-purple");
-        this.body.classList.add("color-green");
+        this.body.classList.remove('color-purple');
+        this.body.classList.add('color-green');
     }
-    
+
     public addGPurpleBg(): void {
-        this.body.classList.remove("color-green");
-        this.body.classList.add("color-purple");
+        this.body.classList.remove('color-green');
+        this.body.classList.add('color-purple');
     }
 
     public getNewCircles(): void {
-        for (let i =1; i <= 3; i++) {
+        for (let i = 1; i <= 3; i++) {
             this.circle.init();
         }
     }
 
     public disableMouse(): void {
         this.mouseState = false;
-        
+
         setTimeout(() => {
             this.mouseState = true;
         }, 2500);
@@ -148,8 +154,7 @@ export class Description implements DescriptionModel {
     public subscribeOnLeft(): void {
         const leftBtn = document.getElementById('btn-left') as HTMLButtonElement;
         const rightBtn = document.getElementById('btn-right') as HTMLButtonElement;
-
-        leftBtn.addEventListener('click', (event: MouseEvent): void => {
+        const moveToLeft = (): void => {
             if (this.getMouseState()) {
                 leftBtn.classList.add('inactive');
                 leftBtn.disabled = true;
@@ -166,15 +171,24 @@ export class Description implements DescriptionModel {
                 }, 2500);
                 this.disableMouse();
             }
+        };
+
+        leftBtn.addEventListener('click', (event: MouseEvent): void => {
+            moveToLeft();
+        });
+
+        document.addEventListener('keydown', (event: KeyboardEvent): void => {
+            if (event.key === 'ArrowLeft') {
+                moveToLeft();
+            }
         });
     }
 
     public subscribeOnRight(): void {
         const leftBtn = document.getElementById('btn-left') as HTMLButtonElement;
         const rightBtn = document.getElementById('btn-right') as HTMLButtonElement;
-
-        rightBtn.addEventListener('click', (event: MouseEvent): void => {
-            if (this.getMouseState()) { 
+        const moveToRight = (): void => {
+            if (this.getMouseState()) {
                 rightBtn.classList.add('inactive');
                 rightBtn.disabled = true;
                 leftBtn.classList.remove('inactive');
@@ -190,23 +204,33 @@ export class Description implements DescriptionModel {
                 }, 2500);
                 this.disableMouse();
             }
+        };
+
+        rightBtn.addEventListener('click', (event: MouseEvent): void => {
+            moveToRight();
+        });
+
+        document.addEventListener('keydown', (event: KeyboardEvent): void => {
+            if (event.key === 'ArrowRight') {
+                moveToRight();
+            }
         });
     }
 
-    public moveCursor (): void {
+    public moveCursor(): void {
         window.addEventListener('mousemove', (event: MouseEvent) => {
             const mouseY = event.clientY;
             const mouseX = event.clientX;
-            const circles = Array.from(document.getElementsByClassName('layout-circle')) as HTMLDivElement[]; 
+            const circles = Array.from(document.getElementsByClassName('layout-circle')) as HTMLDivElement[];
 
             if (this.getMouseState()) {
                 circles.forEach((circle) => {
                     const size = +circle.style.width.slice(0, -2);
                     const addiction = getRandom(size, size * 1.5);
-            
-                    circle.style.transform = `translate3d(${(mouseX - addiction)}px, ${(mouseY - addiction)}px, 0)`;
+
+                    circle.style.transform = `translate3d(${mouseX - addiction}px, ${mouseY - addiction}px, 0)`;
                 });
-            } 
+            }
         });
     }
 }
